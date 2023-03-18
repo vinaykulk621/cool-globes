@@ -36,7 +36,7 @@ const atmosphereFragmentShader = `
     gl_FragColor = vec4(0.3,0.6,1.0,1.0)*intensity;
   }
 `;
-const globe_1 = () => {
+const EarthNight_2 = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
@@ -70,7 +70,7 @@ const globe_1 = () => {
         uniforms: {
           globeTexture: {
             // I wasn't even using the picture of earth that i downloaded 🤦‍♂️🤦‍♂️🤦‍♂️
-            value: new THREE.TextureLoader().load("/globe/earth-night.jpg"),
+            value: new THREE.TextureLoader().load("/earth-night.jpg"),
           },
         },
       })
@@ -89,9 +89,7 @@ const globe_1 = () => {
 
     scene.add(sphere);
     scene.add(atmosphere);
-    sphere.position.x = 2;
-    atmosphere.position.x = 2;
-    camera.position.z = 10;
+    camera.position.z = 8;
 
     renderer.setClearColor(0x000000, 1);
 
@@ -127,21 +125,9 @@ const globe_1 = () => {
       requestAnimationFrame(animate);
 
       // SPHERE Rotation
-      sphere.rotation.x += 0.0001;
-      sphere.rotation.z += 0.0001;
-
-      // Changing the position of the sphere as we scroll
-      sphere.position.y = (-window.pageYOffset / 100) * 0.4;
-      sphere.position.z = (window.pageYOffset / 100) * 0.4;
-      atmosphere.position.y = (-window.pageYOffset / 100) * 0.4;
-      atmosphere.position.z = (window.pageYOffset / 100) * 0.4;
-
-      //  Rotating the camera around the sphere
-      camera.lookAt(sphere.position);
-
-      // Anticlockwise spin
-      camera.position.x = 5 * Math.sin(Date.now() * 0.0001);
-      camera.position.z = 5 * Math.cos(Date.now() * 0.0001);
+      sphere.rotation.x += 0.001;
+      sphere.rotation.y += 0.001;
+      sphere.rotation.z += 0.001;
 
       // INFINITY and little closer
       // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
@@ -169,4 +155,4 @@ const globe_1 = () => {
   return <></>;
 };
 
-export default globe_1;
+export default EarthNight_2;

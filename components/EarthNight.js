@@ -36,7 +36,7 @@ const atmosphereFragmentShader = `
     gl_FragColor = vec4(0.3,0.6,1.0,1.0)*intensity;
   }
 `;
-const globe_2 = () => {
+const EarthNight = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
@@ -70,7 +70,7 @@ const globe_2 = () => {
         uniforms: {
           globeTexture: {
             // I wasn't even using the picture of earth that i downloaded 🤦‍♂️🤦‍♂️🤦‍♂️
-            value: new THREE.TextureLoader().load("/globe/earth-night.jpg"),
+            value: new THREE.TextureLoader().load("/earth-night.jpg"),
           },
         },
       })
@@ -169,4 +169,4 @@ const globe_2 = () => {
   return <></>;
 };
 
-export default globe_2;
+export default EarthNight;

@@ -1,9 +1,12 @@
-import globe_1 from "../components/globe_1";
+import EarthNight from "@/components/EarthNight";
+import EarthNight_2 from "@/components/EarthNight_2";
+
 export default function Home() {
   return (
     <>
       evbbsvsbdvbu
-      <globe_1 />
+      <EarthNight />
+      <EarthNight_2 />
     </>
   );
 }
