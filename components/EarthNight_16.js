@@ -36,7 +36,7 @@ const atmosphereFragmentShader = `
     gl_FragColor = vec4(0.3,0.6,1.0,1.0)*intensity;
   }
 `;
-const EarthNight_8 = () => {
+const EarthNight_16 = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
@@ -63,7 +63,7 @@ const EarthNight_8 = () => {
     document.body.appendChild(renderer.domElement);
 
     const sphere = new THREE.Mesh(
-      new THREE.SphereGeometry(2, 250, 250),
+      new THREE.SphereGeometry(5, 250, 250),
       new ShaderMaterial({
         vertexShader: vertexShader,
         fragmentShader: fragmentShader,
@@ -76,7 +76,7 @@ const EarthNight_8 = () => {
       })
     );
     const atmosphere = new THREE.Mesh(
-      new THREE.SphereGeometry(2, 250, 250),
+      new THREE.SphereGeometry(5, 250, 250),
       new ShaderMaterial({
         vertexShader: atmosphereVertexShader,
         fragmentShader: atmosphereFragmentShader,
@@ -99,11 +99,11 @@ const EarthNight_8 = () => {
         "#ffff00", // yellow
         "#ffcc00", // orange
         "#ff6600", // red-orange
-        // "#ff0000", // red
+        "#ff0000", // red
         "#9900cc", // purple
         "#0000ff", // blue
-        // "#00ffff", // cyan
-        // "#00ff00", // green
+        "#00ffff", // cyan
+        "#00ff00", // green
       ];
       const star = new THREE.Mesh(
         new THREE.SphereGeometry(0.3),
@@ -132,9 +132,16 @@ const EarthNight_8 = () => {
       //  Rotating the camera around the sphere
       camera.lookAt(sphere.position);
 
-      camera.position.x = 5 * Math.cos(Date.now() * 0.001);
-      camera.position.y = 5 * Math.cos(Date.now() * 0.001);
-      camera.position.z = 5 * Math.sin(Date.now() * 0.001);
+      camera.position.x =
+        50 *
+        Math.sin(Date.now() * 0.001 + 2 * Math.PI * Math.random()) *
+        Math.cos(Date.now() * 0.002 + 2 * Math.PI * Math.random());
+      camera.position.y =
+        50 *
+        Math.sin(Date.now() * 0.003 + 2 * Math.PI * Math.random()) *
+        Math.cos(Date.now() * 0.004 + 2 * Math.PI * Math.random());
+      camera.position.z =
+        50 * Math.cos(Date.now() * 0.001 + 2 * Math.PI * Math.random());
 
       // controls.update()
       renderer.render(scene, camera);
@@ -146,4 +153,4 @@ const EarthNight_8 = () => {
   return <></>;
 };
 
-export default EarthNight_8;
+export default EarthNight_16;

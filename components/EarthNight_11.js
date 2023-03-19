@@ -36,7 +36,7 @@ const atmosphereFragmentShader = `
     gl_FragColor = vec4(0.3,0.6,1.0,1.0)*intensity;
   }
 `;
-const EarthNight_8 = () => {
+const EarthNight_11 = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
@@ -132,9 +132,11 @@ const EarthNight_8 = () => {
       //  Rotating the camera around the sphere
       camera.lookAt(sphere.position);
 
-      camera.position.x = 5 * Math.cos(Date.now() * 0.001);
-      camera.position.y = 5 * Math.cos(Date.now() * 0.001);
-      camera.position.z = 5 * Math.sin(Date.now() * 0.001);
+      camera.position.x =
+        5 * Math.sin(Date.now() * 0.001) * Math.cos(Date.now() * 0.002);
+      camera.position.y =
+        5 * Math.sin(Date.now() * 0.001) * Math.sin(Date.now() * 0.002);
+      camera.position.z = 5 * Math.cos(Date.now() * 0.001);
 
       // controls.update()
       renderer.render(scene, camera);
@@ -146,4 +148,4 @@ const EarthNight_8 = () => {
   return <></>;
 };
 
-export default EarthNight_8;
+export default EarthNight_11;

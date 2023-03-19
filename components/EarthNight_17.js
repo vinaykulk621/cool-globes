@@ -36,7 +36,7 @@ const atmosphereFragmentShader = `
     gl_FragColor = vec4(0.3,0.6,1.0,1.0)*intensity;
   }
 `;
-const EarthNight_8 = () => {
+const EarthNight_17 = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
@@ -63,7 +63,7 @@ const EarthNight_8 = () => {
     document.body.appendChild(renderer.domElement);
 
     const sphere = new THREE.Mesh(
-      new THREE.SphereGeometry(2, 250, 250),
+      new THREE.SphereGeometry(5, 250, 250),
       new ShaderMaterial({
         vertexShader: vertexShader,
         fragmentShader: fragmentShader,
@@ -76,7 +76,7 @@ const EarthNight_8 = () => {
       })
     );
     const atmosphere = new THREE.Mesh(
-      new THREE.SphereGeometry(2, 250, 250),
+      new THREE.SphereGeometry(5, 250, 250),
       new ShaderMaterial({
         vertexShader: atmosphereVertexShader,
         fragmentShader: atmosphereFragmentShader,
@@ -132,9 +132,27 @@ const EarthNight_8 = () => {
       //  Rotating the camera around the sphere
       camera.lookAt(sphere.position);
 
-      camera.position.x = 5 * Math.cos(Date.now() * 0.001);
-      camera.position.y = 5 * Math.cos(Date.now() * 0.001);
-      camera.position.z = 5 * Math.sin(Date.now() * 0.001);
+      camera.position.x =
+        50 *
+        Math.sin(
+          Date.now() * 0.001 + (Math.PI / 2) * Math.sin(Date.now() * 0.01)
+        ) *
+        Math.cos(
+          Date.now() * 0.002 + (Math.PI / 2) * Math.sin(Date.now() * 0.01)
+        );
+      camera.position.y =
+        50 *
+        Math.sin(
+          Date.now() * 0.003 + (Math.PI / 2) * Math.sin(Date.now() * 0.02)
+        ) *
+        Math.cos(
+          Date.now() * 0.004 + (Math.PI / 2) * Math.sin(Date.now() * 0.02)
+        );
+      camera.position.z =
+        50 *
+        Math.cos(
+          Date.now() * 0.001 + (Math.PI / 2) * Math.sin(Date.now() * 0.03)
+        );
 
       // controls.update()
       renderer.render(scene, camera);
@@ -146,4 +164,4 @@ const EarthNight_8 = () => {
   return <></>;
 };
 
-export default EarthNight_8;
+export default EarthNight_17;
