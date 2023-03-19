@@ -36,7 +36,7 @@ const atmosphereFragmentShader = `
     gl_FragColor = vec4(0.3,0.6,1.0,1.0)*intensity;
   }
 `;
-const EarthNight = () => {
+const EarthNight_7 = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
@@ -85,24 +85,22 @@ const EarthNight = () => {
       })
     );
 
-    atmosphere.scale.set(1.1, 1.1, 1.1);
+    atmosphere.scale.set(1.2, 1.2, 1.2);
 
     scene.add(sphere);
     scene.add(atmosphere);
-    sphere.position.x = 2;
-    atmosphere.position.x = 2;
-    camera.position.z = 10;
+    camera.position.z = 8;
 
     renderer.setClearColor(0x000000, 1);
 
     function addStars() {
       const starColors = [
-        "#ffffff", // white
-        "#ffff00", // yellow
+        // "#ffffff", // white
+        // "#ffff00", // yellow
         // "#ffcc00", // orange
-        // "#ff6600", // red-orange
+        "#ff6600", // red-orange
         // "#ff0000", // red
-        // "#9900cc", // purple
+        "#9900cc", // purple
         "#0000ff", // blue
         // "#00ffff", // cyan
         // "#00ff00", // green
@@ -127,21 +125,16 @@ const EarthNight = () => {
       requestAnimationFrame(animate);
 
       // SPHERE Rotation
-      sphere.rotation.x += 0.0001;
-      sphere.rotation.z += 0.0001;
-
-      // Changing the position of the sphere as we scroll
-      sphere.position.y = (-window.pageYOffset / 100) * 0.4;
-      sphere.position.z = (window.pageYOffset / 100) * 0.4;
-      atmosphere.position.y = (-window.pageYOffset / 100) * 0.4;
-      atmosphere.position.z = (window.pageYOffset / 100) * 0.4;
+      sphere.rotation.x += 0.001;
+      sphere.rotation.y += 0.001;
+      sphere.rotation.z += 0.001;
 
       //  Rotating the camera around the sphere
       camera.lookAt(sphere.position);
 
       // Anticlockwise spin
-      camera.position.x = 5 * Math.sin(Date.now() * 0.0001);
-      camera.position.z = 5 * Math.cos(Date.now() * 0.0001);
+      // camera.position.x = 5 * Math.sin(Date.now() * 0.0001);
+      // camera.position.z = 5 * Math.cos(Date.now() * 0.0001);
 
       // INFINITY and little closer
       // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
@@ -152,8 +145,8 @@ const EarthNight = () => {
       // camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
 
       // INFINITY and in the core Very FAST⚠️⚠️
-      // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.sin(Date.now() * 0.0001);
+      camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
+      camera.position.z = 5 * Math.sin(Date.now() * 0.0001);
 
       // Anticlockwise spin
       // camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
@@ -169,4 +162,4 @@ const EarthNight = () => {
   return <></>;
 };
 
-export default EarthNight;
+export default EarthNight_7;
