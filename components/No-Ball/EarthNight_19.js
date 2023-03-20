@@ -26,7 +26,7 @@ const EarthNight_19 = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    document.body.appendChild(renderer.domElement);
+    document.body.before(renderer.domElement);
 
     let stars = [];
     function addStars() {
