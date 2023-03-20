@@ -36,7 +36,7 @@ const atmosphereFragmentShader = `
     gl_FragColor = vec4(0.3,0.6,1.0,1.0)*intensity;
   }
 `;
-const EarthNight_7 = () => {
+const EarthNight_2 = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
@@ -84,7 +84,7 @@ const EarthNight_7 = () => {
       })
     );
 
-    atmosphere.scale.set(1.2, 1.2, 1.2);
+    atmosphere.scale.set(1.1, 1.1, 1.1);
 
     scene.add(sphere);
     scene.add(atmosphere);
@@ -94,12 +94,12 @@ const EarthNight_7 = () => {
 
     function addStars() {
       const starColors = [
-        // "#ffffff", // white
-        // "#ffff00", // yellow
+        "#ffffff", // white
+        "#ffff00", // yellow
         // "#ffcc00", // orange
-        "#ff6600", // red-orange
+        // "#ff6600", // red-orange
         // "#ff0000", // red
-        "#9900cc", // purple
+        // "#9900cc", // purple
         "#0000ff", // blue
         // "#00ffff", // cyan
         // "#00ff00", // green
@@ -128,29 +128,6 @@ const EarthNight_7 = () => {
       sphere.rotation.y += 0.001;
       sphere.rotation.z += 0.001;
 
-      //  Rotating the camera around the sphere
-      camera.lookAt(sphere.position);
-
-      // Anticlockwise spin
-      // camera.position.x = 5 * Math.sin(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.cos(Date.now() * 0.0001);
-
-      // INFINITY and little closer
-      // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
-
-      // alternate direction spin
-      // camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
-
-      // INFINITY and in the core Very FAST⚠️⚠️
-      camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
-      camera.position.z = 5 * Math.sin(Date.now() * 0.0001);
-
-      // Anticlockwise spin
-      // camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.sinh(Date.now() * 0.0001);
-
       // controls.update()
       renderer.render(scene, camera);
     };
@@ -161,4 +138,4 @@ const EarthNight_7 = () => {
   return <></>;
 };
 
-export default EarthNight_7;
+export default EarthNight_2;

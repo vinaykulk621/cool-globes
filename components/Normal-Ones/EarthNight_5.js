@@ -131,25 +131,9 @@ const EarthNight_5 = () => {
       //  Rotating the camera around the sphere
       camera.lookAt(sphere.position);
 
-      // Anticlockwise spin
-      // camera.position.x = 5 * Math.sin(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.cos(Date.now() * 0.0001);
-
       // INFINITY and little closer
       camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
       camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
-
-      // alternate direction spin
-      // camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
-
-      // INFINITY and in the core Very FAST⚠️⚠️
-      // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.sin(Date.now() * 0.0001);
-
-      // Anticlockwise spin
-      // camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.sinh(Date.now() * 0.0001);
 
       // controls.update()
       renderer.render(scene, camera);

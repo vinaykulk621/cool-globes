@@ -1,45 +1,13 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
-import { ShaderMaterial } from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-const vertexShader = `
-  varying vec2 vertexUV;
-  varying vec3 vertexNormal;
-  void main() {
-    vertexUV=uv;
-    vertexNormal=normalize(normalMatrix*normal);
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-  `;
-const atmosphereVertexShader = `
-  varying vec3 vertexNormal;
-  void main() {
-    vertexNormal=normalize(normalMatrix*normal);
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 0.9);
-  }
-  `;
-const fragmentShader = `
-  uniform sampler2D globeTexture;
-  varying vec2 vertexUV;
-  varying vec3 vertexNormal;
-  void main(){
-    float intensity=1.05-dot(vertexNormal,vec3(0.0,0.0,1.0));
-    vec3 atmosphere=vec3(0.3,0.6,1.0)*pow(intensity,1.5);
-    gl_FragColor = vec4(atmosphere+texture2D(globeTexture,vertexUV).xyz,1.0);
-  }
-`;
-const atmosphereFragmentShader = `
-  varying vec3 vertexNormal;
-  void main(){
-    float intensity=pow(0.4-dot(vertexNormal,vec3(0,0,1.0)),2.0);
-    gl_FragColor = vec4(0.3,0.6,1.0,1.0)*intensity;
-  }
-`;
 const EarthNight_9 = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
+  const controlsRef = useRef(null);
 
   useEffect(() => {
     sceneRef.current = new THREE.Scene();
@@ -50,46 +18,22 @@ const EarthNight_9 = () => {
       1000
     );
     rendererRef.current = new THREE.WebGLRenderer({ antialias: true });
+    controlsRef.current = new OrbitControls(
+      cameraRef.current,
+      rendererRef.current.domElement
+    );
   }, []);
 
   useEffect(() => {
     const scene = sceneRef.current;
     const camera = cameraRef.current;
     const renderer = rendererRef.current;
+    const controls = controlsRef.current;
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
     document.body.appendChild(renderer.domElement);
-
-    const sphere = new THREE.Mesh(
-      new THREE.SphereGeometry(2, 250, 250),
-      new ShaderMaterial({
-        vertexShader: vertexShader,
-        fragmentShader: fragmentShader,
-        uniforms: {
-          globeTexture: {
-            // I wasn't even using the picture of earth that i downloaded 🤦‍♂️🤦‍♂️🤦‍♂️
-            value: new THREE.TextureLoader().load("/earth-night.jpg"),
-          },
-        },
-      })
-    );
-    const atmosphere = new THREE.Mesh(
-      new THREE.SphereGeometry(2, 250, 250),
-      new ShaderMaterial({
-        vertexShader: atmosphereVertexShader,
-        fragmentShader: atmosphereFragmentShader,
-        blending: THREE.AdditiveBlending,
-        side: THREE.BackSide,
-      })
-    );
-
-    atmosphere.scale.set(1.2, 1.2, 1.2);
-
-    // scene.add(sphere);
-    // scene.add(atmosphere);
-    camera.position.z = 8;
 
     renderer.setClearColor(0x000000, 1);
 
@@ -105,8 +49,9 @@ const EarthNight_9 = () => {
         "#00ffff", // cyan
         "#00ff00", // green
       ];
+
       const star = new THREE.Mesh(
-        new THREE.SphereGeometry(0.7),
+        new THREE.SphereGeometry(Math.random() * 9),
         new THREE.MeshBasicMaterial({
           color: new THREE.Color().set(
             starColors[Math.floor(Math.random() * starColors.length)]
@@ -115,45 +60,28 @@ const EarthNight_9 = () => {
       );
       const [x, y, z] = Array(3)
         .fill()
-        .map(() => THREE.MathUtils.randFloatSpread(1100));
+        .map(() => THREE.MathUtils.randFloatSpread(1000));
       star.position.set(x, y, z);
       scene.add(star);
     }
-    Array(1000).fill().forEach(addStars);
+
+    Array(2500).fill().forEach(addStars);
+    camera.position.z = 1100;
+    camera.position.y = -800;
+
+    controls.update();
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.rotateSpeed = 0.5;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 5.4;
+
+    camera.lookAt(0, 0, 0);
 
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // SPHERE Rotation
-      // sphere.rotation.x += 0.001;
-      // sphere.rotation.y += 0.001;
-      // sphere.rotation.z += 0.001;
-
-      //  Rotating the camera around the sphere
-      // camera.lookAt(sphere.position);
-
-      // Anticlockwise spin
-      camera.position.x = (5 * Math.sin(Date.now() * 0.001)) ** 3;
-      camera.position.y = (5 * Math.sin(Date.now() * 0.001)) ** 2;
-      camera.position.z = 5 * Math.cos(Date.now() * 0.001) ** 3;
-
-      // INFINITY and little closer
-      // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
-
-      // alternate direction spin
-      // camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
-
-      // INFINITY and in the core Very FAST⚠️⚠️
-      // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.sin(Date.now() * 0.0001);
-
-      // Anticlockwise spin
-      // camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.sinh(Date.now() * 0.0001);
-
-      // controls.update()
+      controls.update();
       renderer.render(scene, camera);
     };
 

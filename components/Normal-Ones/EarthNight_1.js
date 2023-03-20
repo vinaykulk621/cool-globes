@@ -36,7 +36,7 @@ const atmosphereFragmentShader = `
     gl_FragColor = vec4(0.3,0.6,1.0,1.0)*intensity;
   }
 `;
-const EarthNight_2 = () => {
+const EarthNight_1 = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
@@ -88,7 +88,9 @@ const EarthNight_2 = () => {
 
     scene.add(sphere);
     scene.add(atmosphere);
-    camera.position.z = 8;
+    sphere.position.x = 2;
+    atmosphere.position.x = 2;
+    camera.position.z = 10;
 
     renderer.setClearColor(0x000000, 1);
 
@@ -124,25 +126,22 @@ const EarthNight_2 = () => {
       requestAnimationFrame(animate);
 
       // SPHERE Rotation
-      sphere.rotation.x += 0.001;
-      sphere.rotation.y += 0.001;
-      sphere.rotation.z += 0.001;
+      sphere.rotation.x += 0.0001;
+      sphere.rotation.y += 0.0001;
+      sphere.rotation.z += 0.0001;
 
-      // INFINITY and little closer
-      // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
+      // Changing the position of the sphere as we scroll
+      sphere.position.y = (-window.pageYOffset / 100) * 0.4;
+      sphere.position.z = (window.pageYOffset / 100) * 0.4;
+      atmosphere.position.y = (-window.pageYOffset / 100) * 0.4;
+      atmosphere.position.z = (window.pageYOffset / 100) * 0.4;
 
-      // alternate direction spin
-      // camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
-
-      // INFINITY and in the core Very FAST⚠️⚠️
-      // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.sin(Date.now() * 0.0001);
+      //  Rotating the camera around the sphere
+      camera.lookAt(sphere.position);
 
       // Anticlockwise spin
-      // camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.sinh(Date.now() * 0.0001);
+      camera.position.x = 5 * Math.sin(Date.now() * 0.0001);
+      camera.position.z = 5 * Math.cos(Date.now() * 0.0001);
 
       // controls.update()
       renderer.render(scene, camera);
@@ -154,4 +153,4 @@ const EarthNight_2 = () => {
   return <></>;
 };
 
-export default EarthNight_2;
+export default EarthNight_1;

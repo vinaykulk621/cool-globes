@@ -583,8 +583,9 @@ const EarthNight_19 = () => {
         "#CDCD00",
         "#8B8B00",
       ];
+
       const star = new THREE.Mesh(
-        new THREE.SphereGeometry(0.7),
+        new THREE.SphereGeometry(1.2),
         new THREE.MeshBasicMaterial({
           color: new THREE.Color().set(
             starColors[Math.floor(Math.random() * starColors.length)]
@@ -593,20 +594,36 @@ const EarthNight_19 = () => {
       );
       const [x, y, z] = Array(3)
         .fill()
-        .map(() => THREE.MathUtils.randFloatSpread(1500));
+        .map(() => THREE.MathUtils.randFloatSpread(2000));
       star.position.set(x, y, z);
       scene.add(star);
       stars.push(star);
     }
-    Array(2000).fill().forEach(addStars);
+
+    Array(3000).fill().forEach(addStars);
 
     const animate = () => {
       requestAnimationFrame(animate);
 
+      let movements = [
+        5 * Math.sin(Date.now() * 0.001),
+        8 * Math.sin(Date.now() * 0.001),
+        8 * Math.cos(Date.now() * 0.001),
+        (5 * Math.sin(Date.now() * 0.001)) ** 3,
+        (5 * Math.sin(Date.now() * 0.001)) ** 2,
+        5 * Math.cos(Date.now() * 0.001) ** 3,
+        10 * Math.sin(Date.now() * 0.001) * Math.cos(Date.now() * 0.002),
+        5 * Math.sin(Date.now() * 0.003) * Math.cos(Date.now() * 0.004),
+        10 * Math.cos(Date.now() * 0.001) * Math.sin(Date.now() * 0.002),
+      ];
+
       stars.forEach((star) => {
-        star.position.x += 5 * Math.sin(Date.now() * 0.001);
-        star.position.y += 5 * Math.sin(Date.now() * 0.001);
-        star.position.z += 5 * Math.cos(Date.now() * 0.001);
+        star.position.x +=
+          movements[Math.floor(Math.random() * movements.length)];
+        star.position.y +=
+          movements[Math.floor(Math.random() * movements.length)];
+        star.position.z +=
+          movements[Math.floor(Math.random() * movements.length)];
       });
 
       // controls.update()

@@ -36,7 +36,7 @@ const atmosphereFragmentShader = `
     gl_FragColor = vec4(0.3,0.6,1.0,1.0)*intensity;
   }
 `;
-const EarthNight_6 = () => {
+const EarthNight_7 = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
@@ -94,15 +94,15 @@ const EarthNight_6 = () => {
 
     function addStars() {
       const starColors = [
-        "#ffffff", // white
-        "#ffff00", // yellow
+        // "#ffffff", // white
+        // "#ffff00", // yellow
         // "#ffcc00", // orange
         "#ff6600", // red-orange
-        "#ff0000", // red
-        // "#9900cc", // purple
+        // "#ff0000", // red
+        "#9900cc", // purple
         "#0000ff", // blue
         // "#00ffff", // cyan
-        "#00ff00", // green
+        // "#00ff00", // green
       ];
       const star = new THREE.Mesh(
         new THREE.SphereGeometry(0.3),
@@ -131,25 +131,9 @@ const EarthNight_6 = () => {
       //  Rotating the camera around the sphere
       camera.lookAt(sphere.position);
 
-      // Anticlockwise spin
-      // camera.position.x = 5 * Math.sin(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.cos(Date.now() * 0.0001);
-
-      // INFINITY and little closer
-      // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
-
-      // alternate direction spin
-      camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
-      camera.position.z = 5 * Math.tanh(Date.now() * 0.0001);
-
       // INFINITY and in the core Very FAST⚠️⚠️
-      // camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.sin(Date.now() * 0.0001);
-
-      // Anticlockwise spin
-      // camera.position.x = 5 * Math.cos(Date.now() * 0.0001);
-      // camera.position.z = 5 * Math.sinh(Date.now() * 0.0001);
+      camera.position.x = 5 * Math.tan(Date.now() * 0.0001);
+      camera.position.z = 5 * Math.sin(Date.now() * 0.0001);
 
       // controls.update()
       renderer.render(scene, camera);
@@ -161,4 +145,4 @@ const EarthNight_6 = () => {
   return <></>;
 };
 
-export default EarthNight_6;
+export default EarthNight_7;
