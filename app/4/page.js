@@ -1,6 +1,6 @@
-import { Links } from "@/components/Links/Links";
+import { Links } from "../../components/Links/Links";
 import EarthNight_8 from "../../components/Normal-Ones/EarthNight_8";
-import EarthNight_7 from "@/components/Normal-Ones/EarthNight_7";
+import EarthNight_7 from "../../components/Normal-Ones/EarthNight_7";
 
 export default function Home() {
   return (

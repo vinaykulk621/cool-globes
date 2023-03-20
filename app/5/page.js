@@ -1,4 +1,4 @@
-import { Links } from "@/components/Links/Links";
+import { Links } from "../../components/Links/Links";
 import EarthNight_10 from "../../components/Cool-ones/EarthNight_10";
 import EarthNight_11 from "../../components/Cool-ones/EarthNight_11";
 

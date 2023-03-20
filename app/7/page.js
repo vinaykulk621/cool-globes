@@ -1,6 +1,6 @@
-import { Links } from "@/components/Links/Links";
-import EarthNight_14 from "@/components/Far-Ones/EarthNight_14";
-import EarthNight_16 from "@/components/Crazy-Ones/EarthNight_16";
+import { Links } from "../../components/Links/Links";
+import EarthNight_14 from "../../components/Far-Ones/EarthNight_14";
+import EarthNight_16 from "../../components/Crazy-Ones/EarthNight_16";
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
-import { Links } from "@/components/Links/Links";
-import EarthNight_1 from "@/components/Normal-Ones/EarthNight_1";
-import EarthNight_2 from "@/components/Normal-Ones/EarthNight_2";
+import { Links } from "../components/Links/Links";
+import EarthNight_1 from "../components/Normal-Ones/EarthNight_1";
+import EarthNight_2 from "../components/Normal-Ones/EarthNight_2";
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
       <EarthNight_2 />
       <Links
         prev={"/"}
-        next={"/2"}
+        next={"2"}
       />
     </>
   );
