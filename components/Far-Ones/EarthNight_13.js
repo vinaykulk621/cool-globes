@@ -63,7 +63,7 @@ const EarthNight_13 = () => {
     document.body.appendChild(renderer.domElement);
 
     const sphere = new THREE.Mesh(
-      new THREE.SphereGeometry(5, 250, 250),
+      new THREE.SphereGeometry(7, 250, 250),
       new ShaderMaterial({
         vertexShader: vertexShader,
         fragmentShader: fragmentShader,
@@ -76,7 +76,7 @@ const EarthNight_13 = () => {
       })
     );
     const atmosphere = new THREE.Mesh(
-      new THREE.SphereGeometry(5, 250, 250),
+      new THREE.SphereGeometry(7, 250, 250),
       new ShaderMaterial({
         vertexShader: atmosphereVertexShader,
         fragmentShader: atmosphereFragmentShader,
