@@ -1,13 +1,13 @@
 import { Links } from "../../components/Links/Links";
-import EarthNight_10 from "@/components/Cool-ones/EarthNight_10";
+import EarthNight_15 from "@/components/Far-Ones/EarthNight_15";
 
 export default function Home() {
   return (
     <>
-      <EarthNight_10 />
+      <EarthNight_15 />
       <Links
-        prev={"8"}
-        next={"10"}
+        prev={"13"}
+        next={"15"}
       />
     </>
   );
