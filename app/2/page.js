@@ -1,12 +1,12 @@
-import { Links } from "../../components/Links/Links";
-import EarthNight_5 from "@/components/Normal-Ones/EarthNight_5";
-import EarthNight_6 from "@/components/Normal-Ones/EarthNight_6";
+import { Links } from "@/components/Links/Links";
+import EarthNight_3 from "@/components/Normal-Ones/EarthNight_3";
+import EarthNight_4 from "@/components/Normal-Ones/EarthNight_4";
 
 export default function Home() {
   return (
     <>
-      <EarthNight_5 />
-      <EarthNight_6 />
+      <EarthNight_3 />
+      <EarthNight_4 />
       <Links
         prev={"/"}
         next={"3"}
