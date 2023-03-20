@@ -60,8 +60,7 @@ const EarthNight_1 = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    // document.body.before(renderer.domElement);
-
+    document.body.before(renderer.domElement);
     const sphere = new THREE.Mesh(
       new THREE.SphereGeometry(2, 250, 250),
       new ShaderMaterial({
